@@ -1,0 +1,27 @@
+:host
+  display: inline-block
+  border: 1px solid lightgray
+  padding: 1px 0
+  background: white
+  margin: auto 0
+
+  .icon
+    width: 20px
+    text-align: center
+    background: white
+    padding-left: 5px
+    padding-right: 5px
+    padding-top: 3px
+
+  >>> input
+    border: none
+    outline: none
+    height: 100%
+    margin: 1px 0
+    box-sizing: border-box
+
+:host(.input-focus)
+  border: 1px solid blue
+
+:host(.input-blur)
+  border: 1px solid lightgray
