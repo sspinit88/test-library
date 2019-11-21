@@ -1,0 +1,14 @@
+<div class="tab-panel">
+
+  <ul *ngIf="tabs"
+      class="tab-panel-buttons">
+    <li *ngFor="let tab of tabs"
+        (click)="selectTab(tab)"
+        [ngClass]="{selected: tab.selected}">
+      {{tab.title}}
+    </li>
+  </ul>
+
+  <ng-content></ng-content>
+
+</div>

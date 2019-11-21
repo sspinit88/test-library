@@ -1,19 +1,8 @@
-<h2>
-  Tab Panel
-</h2>
-
-
 <div class="container">
 
-  <div class="tab-panel">
+  <app-au-tab-panel>
 
-    <ul class="tab-panel-buttons">
-      <li class="selected">Login</li>
-      <li>Sign Up</li>
-      <li>Contact</li>
-    </ul>
-
-    <div class="tab">
+    <app-au-tab [title]="'Login'">
       <form>
         <div class="form-field">
           <label>Email:</label><input>
@@ -22,9 +11,9 @@
           <label>Password:</label><input>
         </div>
       </form>
-    </div>
+    </app-au-tab>
 
-    <div class="tab">
+    <app-au-tab [title]="'SignUp'">
       <form>
         <div class="form-field">
           <label>Email:</label><input>
@@ -36,9 +25,9 @@
           <label>Confirm Password:</label><input>
         </div>
       </form>
-    </div>
+    </app-au-tab>
 
-    <div class="tab">
+    <app-au-tab [title]="'Contact'">
       <form>
         <div class="form-field">
           <label>Email:</label><input>
@@ -48,9 +37,11 @@
           <textarea></textarea>
         </div>
       </form>
-    </div>
+    </app-au-tab>
 
-  </div>
+  </app-au-tab-panel>
+
+
 
 
 </div>
