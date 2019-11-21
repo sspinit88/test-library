@@ -1,13 +1,22 @@
 <div class="tab-panel">
+  <!--let-tabs="tabs" - указываем свойство ввода-->
+  <ng-template #defaultTubsHeader
+               let-tabs="tabs">
+    <ul *ngIf="tabs"
+        class="tab-panel-buttons">
+      <li *ngFor="let tab of tabs"
+          (click)="selectTab(tab)"
+          [ngClass]="{selected: tab.selected}">
+        {{tab.title}}
+      </li>
+    </ul>
+  </ng-template>
 
-  <ul *ngIf="tabs"
-      class="tab-panel-buttons">
-    <li *ngFor="let tab of tabs"
-        (click)="selectTab(tab)"
-        [ngClass]="{selected: tab.selected}">
-      {{tab.title}}
-    </li>
-  </ul>
+  <!--ngTemplateOutlet получает ссылку на тыбы и отображает их-->
+  <ng-container *ngTemplateOutlet="headerTemplate ? headerTemplate : defaultTubsHeader; context:tabsContext">
+
+  </ng-container>
+
 
   <ng-content></ng-content>
 

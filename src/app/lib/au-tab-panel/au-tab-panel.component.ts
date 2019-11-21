@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { AuTabComponent } from './au-tab/au-tab.component';
 
 @Component({
@@ -9,6 +9,8 @@ import { AuTabComponent } from './au-tab/au-tab.component';
 export class AuTabPanelComponent implements AfterContentInit {
 
   @ContentChildren(AuTabComponent) tabs: QueryList<AuTabComponent>;
+
+  @Input() headerTemplate: TemplateRef<any>;
 
   constructor() {
   }
@@ -29,6 +31,12 @@ export class AuTabPanelComponent implements AfterContentInit {
   selectTab(tab: AuTabComponent) {
     this.tabs.forEach(t => t.selected = false);
     tab.selected = true;
+  }
+
+  get tabsContext() {
+    return {
+      tabs: this.tabs
+    };
   }
 
 }
