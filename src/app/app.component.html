@@ -1,66 +1,26 @@
-<body>
 <div class="container">
-  <h1>Font Awesome</h1>
+  <h1>
+    Input Mask Examples
+  </h1>
 
-  <div class="form">
+  <label>Phone:</label>
+  <input au-mask="(999) 999-9999">
 
-    <div class="form-row">
-      <label>Normal Input:</label>
-      <input class="normal-input"
-             type="email"
-             name="email"
-             placeholder="E-mail">
-    </div>
+  <label>International Phone Number</label>
+  <input au-mask="+99 999 99 99 99">
 
-    <div class="form-row">
-      <label>Email:</label>
-      <app-au-fa-input [icon]="'envelope'">
-
-        <input class="normal-input"
-               type="E-mail"
-               placeholder="email">
-
-      </app-au-fa-input>
-    </div>
-
-    <div class="form-row">
-      <label>Password:</label>
-      <app-au-fa-input icon="lock">
-
-        <input class="normal-input"
-               type="text"
-               placeholder="Password">
-
-      </app-au-fa-input>
-    </div>
+  <label>Credit Card</label>
+  <input au-mask="9999 9999 9999 9999">
 
 
-    <div class="form-row">
-      <label>Stripe:</label>
-      <app-au-fa-input icon="cc-stripe">
+  <label>VAT Number</label>
+  <input au-mask="AA-9999 9999 9999 9999">
 
-        <input class="normal-input"
-               type="text"
-               placeholder="Stripe">
+  <label>Date</label>
+  <input au-mask="39/19/9999">
 
-      </app-au-fa-input>
-    </div>
-
-    <div class="form-row">
-      <label>Paypal:</label>
-      <app-au-fa-input icon="paypal">
-
-        <input class="normal-input"
-               type="text"
-               placeholder="Paypal">
-
-      </app-au-fa-input>
-    </div>
-
-  </div>
+  <label>Text</label>
+  <input value="ABCD">
 
 
 </div>
-
-</body>
-
