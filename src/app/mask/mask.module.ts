@@ -9,7 +9,10 @@ import { MaskDirective } from './mask.directive';
   ],
   imports: [
     CommonModule,
-  ]
+  ],
+  exports: [
+    MaskDirective,
+  ],
 })
 export class MaskModule {
 }
