@@ -1,53 +1,71 @@
 <div class="container">
 
-  <ng-template #alternativeTabPanelBtn>
-    <button (click)="tabPanel.selectTab(loginTab)">Login!</button>
-    <button (click)="tabPanel.selectTab(signUp)">SignUp!</button>
+  <h1>Modal Examples</h1>
+
+  <!--свой темплет можно передать как через локальную референцию, так и поместив в el-modal-->
+  <ng-template #authModalBody>
+    <div class="container">
+      <ng-template #alternativeTabPanelBtn>
+        <button (click)="tabPanel.selectTab(loginTab)">Login!</button>
+        <button (click)="tabPanel.selectTab(signUp)">SignUp!</button>
+      </ng-template>
+      <app-au-tab-panel #tabPanel
+                        [headerTemplate]="alternativeTabPanelBtn">
+
+        <app-au-tab [title]="'Login'"
+                    #loginTab>
+          <form>
+            <div class="form-field">
+              <label>Email:</label><input>
+            </div>
+            <div class="form-field">
+              <label>Password:</label><input>
+            </div>
+          </form>
+        </app-au-tab>
+
+        <app-au-tab [title]="'SignUp'"
+                    #signUp>
+          <form>
+            <div class="form-field">
+              <label>Email:</label><input>
+            </div>
+            <div class="form-field">
+              <label>Password:</label><input>
+            </div>
+            <div class="form-field">
+              <label>Confirm Password:</label><input>
+            </div>
+          </form>
+        </app-au-tab>
+
+        <app-au-tab [title]="'Contact'">
+          <form>
+            <div class="form-field">
+              <label>Email:</label><input>
+            </div>
+            <div class="form-field">
+              <label>Message:</label>
+              <textarea></textarea>
+            </div>
+          </form>
+        </app-au-tab>
+      </app-au-tab-panel>
+    </div>
   </ng-template>
 
-  <app-au-tab-panel #tabPanel
-                    [headerTemplate]="alternativeTabPanelBtn">
+  <el-modal [body]="authModalBody"
+            *elModalOpenOnClick="[loginButton, signUpButton]"
+            class="auth-modal">
 
-    <app-au-tab [title]="'Login'"
-                #loginTab>
-      <form>
-        <div class="form-field">
-          <label>Email:</label><input>
-        </div>
-        <div class="form-field">
-          <label>Password:</label><input>
-        </div>
-      </form>
-    </app-au-tab>
+  </el-modal>
 
-    <app-au-tab [title]="'SignUp'"
-                #signUp>
-      <form>
-        <div class="form-field">
-          <label>Email:</label><input>
-        </div>
-        <div class="form-field">
-          <label>Password:</label><input>
-        </div>
-        <div class="form-field">
-          <label>Confirm Password:</label><input>
-        </div>
-      </form>
-    </app-au-tab>
 
-    <app-au-tab [title]="'Contact'">
-      <form>
-        <div class="form-field">
-          <label>Email:</label><input>
-        </div>
-        <div class="form-field">
-          <label>Message:</label>
-          <textarea></textarea>
-        </div>
-      </form>
-    </app-au-tab>
+  <div class="modal-buttons">
+    <button #loginButton>Login</button>
 
-  </app-au-tab-panel>
+    <button #signUpButton>Sign Up</button>
 
+  </div>
 
 </div>
