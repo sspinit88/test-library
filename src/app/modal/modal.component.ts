@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ModalService } from './modal.service';
+import { EventManager } from '@angular/platform-browser';
 
 @Component({
   selector: 'el-modal',
@@ -8,11 +10,38 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @Input() body: TemplateRef<any>;
+  @Input() hideOnEsc: boolean = true;
+  @Input() hideOnClickOutside: boolean = true;
+  // через контекст получаем параметры переданного шаблона (ищи в './modal.component.html')
+  @Input() context: any;
 
-  constructor() {
+  constructor(
+    private _modalService: ModalService,
+    private _eventManager: EventManager, // сервис - глобальный менеджер событий
+  ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this._eventManager
+      .addGlobalEventListener('window', 'keyup.esc', () => {
+        if (!!this.hideOnEsc) {
+          this.closeModal();
+        }
+      });
   }
 
+  onClickOutsideModal(): void {
+    if (!!this.hideOnClickOutside) {
+      this.closeModal();
+    }
+  }
+
+  closeModal(): void {
+    this._modalService.close();
+  }
+
+  cancelClick(e: Event): void {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 }

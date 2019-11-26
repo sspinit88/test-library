@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-library';
+
+  loginActive = true;
+
+  // обеспечивает переключение нужного таба при открытии окна
+  setLoginActive(loginActive) {
+    this.loginActive = loginActive;
+  }
 }

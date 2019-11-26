@@ -3,7 +3,10 @@
   <h1>Modal Examples</h1>
 
   <!--свой темплет можно передать как через локальную референцию, так и поместив в el-modal-->
-  <ng-template #authModalBody>
+  <ng-template #authModalBody
+               let-title="title"
+               let-loginTabActive="loginTabActive">
+    <h5>{{title}}</h5>
     <div class="container">
       <ng-template #alternativeTabPanelBtn>
         <button (click)="tabPanel.selectTab(loginTab)">Login!</button>
@@ -13,8 +16,9 @@
                         [headerTemplate]="alternativeTabPanelBtn">
 
         <app-au-tab [title]="'Login'"
+                    [selected]="loginTabActive"
                     #loginTab>
-          <form>
+          <form>s
             <div class="form-field">
               <label>Email:</label><input>
             </div>
@@ -25,6 +29,7 @@
         </app-au-tab>
 
         <app-au-tab [title]="'SignUp'"
+                    [selected]="!loginTabActive"
                     #signUp>
           <form>
             <div class="form-field">
@@ -55,16 +60,25 @@
   </ng-template>
 
   <el-modal [body]="authModalBody"
+            [hideOnClickOutside]="false"
+            [hideOnEsc]="true"
             *elModalOpenOnClick="[loginButton, signUpButton]"
+            [context]="{title: 'Login or Sign Up' , loginTabActive: loginActive}"
+            #modal
             class="auth-modal">
-
+    <i class="fa fa-times"
+       (click)="modal.closeModal()"></i>
   </el-modal>
 
 
   <div class="modal-buttons">
-    <button #loginButton>Login</button>
+    <button #loginButton
+            (click)="setLoginActive(true)">Login
+    </button>
 
-    <button #signUpButton>Sign Up</button>
+    <button #signUpButton
+            (click)="setLoginActive(false)">Sign Up
+    </button>
 
   </div>
 

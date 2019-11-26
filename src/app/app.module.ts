@@ -22,9 +22,8 @@ import { ModalModule } from './modal/modal.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ModalModule,
+    ModalModule.forRoot(),
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
