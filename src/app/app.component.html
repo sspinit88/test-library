@@ -1,66 +1,8 @@
-<body>
-<div class="container">
-  <h1>Font Awesome</h1>
-
-  <div class="form">
-
-    <div class="form-row">
-      <label>Normal Input:</label>
-      <input class="normal-input"
-             type="email"
-             name="email"
-             placeholder="E-mail">
-    </div>
-
-    <div class="form-row">
-      <label>Email:</label>
-      <app-au-fa-input [icon]="'envelope'">
-
-        <input class="normal-input"
-               type="E-mail"
-               placeholder="email">
-
-      </app-au-fa-input>
-    </div>
-
-    <div class="form-row">
-      <label>Password:</label>
-      <app-au-fa-input icon="lock">
-
-        <input class="normal-input"
-               type="text"
-               placeholder="Password">
-
-      </app-au-fa-input>
-    </div>
-
-
-    <div class="form-row">
-      <label>Stripe:</label>
-      <app-au-fa-input icon="cc-stripe">
-
-        <input class="normal-input"
-               type="text"
-               placeholder="Stripe">
-
-      </app-au-fa-input>
-    </div>
-
-    <div class="form-row">
-      <label>Paypal:</label>
-      <app-au-fa-input icon="paypal">
-
-        <input class="normal-input"
-               type="text"
-               placeholder="Paypal">
-
-      </app-au-fa-input>
-    </div>
-
-  </div>
-
-
-</div>
-
-</body>
-
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+  <input formControlName="from"
+         type="text"/>
+  <input formControlName="to"
+         type="text"/>
+  <button type="submit">test</button>
+</form>
