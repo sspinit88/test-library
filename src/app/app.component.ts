@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         to: ['']
       },
       // { validator: this.checkIt('from', 'to') }
-      { validators: comparisonOfTwoNumbers(this.form, 'from', 'to').bind(this) }
+      { validators: comparisonOfTwoNumbers(this.form, 'from', 'to') }
     );
   }
 
