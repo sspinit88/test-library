@@ -49,7 +49,7 @@ export class ElInputCourencyDDirective implements OnInit, AfterContentInit, Afte
 
     this.input.value = inputValue;
 
-    // const value = inputValue.replace(/\s+/g, '')
+    // const value = inputValue.replace(/\s+/g, '')ж
   }
 
   addInputClass(): void {
