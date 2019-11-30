@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     alert('valid!');
   }
 
+//// todo вариант 1
   checkIt(from: string, to: string): ValidationErrors {
     return (group: FormGroup) => {
       const a = group.get(from);
@@ -48,13 +49,20 @@ export class AppComponent implements OnInit {
   }
 }
 
+//// todo вариант 2
 export function comparisonOfTwoNumbers(group: FormGroup | FormData, from: string, to: string): ValidatorFn {
   return (control: FormControl) => {
 
     const a = +control.value[from];
     const b = +control.value[to];
 
-    return (a > b) ? { valueDifferentFrom: to } : null;
+    if (!a && !!b) {
+      return null;
+    }
+    if ((!!a && !!b) && (a > b)) {
+      return { valueDifferentFrom: to };
+    } else {
+      return null;
+    }
   };
-
 }
