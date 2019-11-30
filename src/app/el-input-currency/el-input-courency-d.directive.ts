@@ -1,14 +1,12 @@
-import { Directive, HostListener, Renderer2, ElementRef, AfterViewInit, AfterContentInit, OnInit, } from '@angular/core';
-import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../constants/regexp.constants';
+import { Directive, HostListener, Renderer2, ElementRef, AfterViewInit, AfterContentInit, } from '@angular/core';
 
 
 @Directive({
   selector: '[d-format]'
 })
-export class ElInputCourencyDDirective implements OnInit, AfterContentInit, AfterViewInit {
+export class ElInputCourencyDDirective implements AfterContentInit, AfterViewInit {
 
   input: HTMLInputElement;
-  viewer: HTMLInputElement;
   focused: boolean = false;
 
 
@@ -17,10 +15,6 @@ export class ElInputCourencyDDirective implements OnInit, AfterContentInit, Afte
     private _renderer: Renderer2,
   ) {
     this.input = this._elRef.nativeElement;
-  }
-
-  ngOnInit(): void {
-    this.getViewer();
   }
 
   ngAfterContentInit(): void {
@@ -41,15 +35,14 @@ export class ElInputCourencyDDirective implements OnInit, AfterContentInit, Afte
     this.focused = false;
   }
 
-  @HostListener('input')
-  formatInputValue() {
-    const inputValue = this.input.value.replace(RE_FORMAT_NUMBER, '').substring(0, 9);
+  formatInputValue(str?: string) {
+    if (!str) {
+      return;
+    }
 
-    this.viewer.value = inputValue.replace(RE_CURRENCY, '$1 ');
+    this.input.value = str.replace(/\s+/g, '');
 
-    this.input.value = inputValue;
-
-    // const value = inputValue.replace(/\s+/g, '')ж
+    // console.log('Line - 46, this.input:', this.input)
   }
 
   addInputClass(): void {
@@ -58,10 +51,6 @@ export class ElInputCourencyDDirective implements OnInit, AfterContentInit, Afte
     }
 
     this._renderer.addClass(this.input, 'content-input');
-  }
-
-  getViewer(): void {
-    this.viewer = this.input.closest('div.el-content').querySelector('.el-view');
   }
 
 }
