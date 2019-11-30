@@ -1,4 +1,4 @@
-import { Component, Input, AfterContentInit, ContentChild, HostBinding,  } from '@angular/core';
+import { Component, Input, AfterContentInit, ContentChild, HostBinding } from '@angular/core';
 import { ElInputCourencyDDirective } from '../el-input-courency-d.directive';
 
 @Component({
