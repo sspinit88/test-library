@@ -1,12 +1,14 @@
-import { Directive, HostListener, Renderer2, ElementRef, AfterViewInit, AfterContentInit, } from '@angular/core';
+import { Directive, HostListener, Renderer2, ElementRef, AfterViewInit, AfterContentInit, OnInit, } from '@angular/core';
+import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../constants/regexp.constants';
 
 
 @Directive({
   selector: '[d-format]'
 })
-export class ElInputCourencyDDirective implements AfterContentInit, AfterViewInit {
+export class ElInputCourencyDDirective implements OnInit, AfterContentInit, AfterViewInit {
 
   input: HTMLInputElement;
+  viewer: HTMLInputElement;
   focused: boolean = false;
 
 
@@ -17,17 +19,16 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
     this.input = this._elRef.nativeElement;
   }
 
+  ngOnInit(): void {
+    this.getViewer();
+  }
+
   ngAfterContentInit(): void {
     this.addInputClass();
   }
 
   ngAfterViewInit(): void {
     this.formatInputValue();
-    const t = this.input.closest('div.el-content').querySelector('.el-view');
-
-    const test = new Event('click');
-
-    t.dispatchEvent(test);
   }
 
   @HostListener('focus')
@@ -40,16 +41,20 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
     this.focused = false;
   }
 
-  formatInputValue(str?: string) {
-    if (!str) {
-      return;
-    }
-    const value = str.replace(/\s+/g, '');
+  @HostListener('input')
+  formatInputValue() {
+    const inputValue = this.input.value.replace(RE_FORMAT_NUMBER, '').substring(0, 9);
 
+    this.viewer.value = inputValue.replace(RE_CURRENCY, '$1 ');
 
+    this.input.value = inputValue;
 
-    this.input.value = value;
-    // console.log('File: el-input-courency-d.directive.ts, Line - 46, this.input:', this.input)
+    // const value = inputValue.replace(/\s+/g, '');
+
+    const t = new Event('focus');
+
+    this.viewer.dispatchEvent(t);
+
   }
 
   addInputClass(): void {
@@ -58,6 +63,10 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
     }
 
     this._renderer.addClass(this.input, 'content-input');
+  }
+
+  getViewer(): void {
+    this.viewer = this.input.closest('div.el-content').querySelector('.el-view');
   }
 
 }

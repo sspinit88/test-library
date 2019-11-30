@@ -26,26 +26,28 @@
   background-color: transparent;
   color: #000;
   position: relative;
-  z-index: 100;
+  z-index: 10000;
   caret-color: #000;
-  /*opacity: 0;*/
+  opacity: 0;
 }
 
 :host .el-view {
   position: absolute;
-  top: 100px;
+  top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  /*border: none;*/
-  border: 1px solid red;
+  border: none;
   outline: none;
   line-height: 23px;
-  z-index: 1000;
+  z-index: 1;
   opacity: 1;
   caret-color: #000;
   box-sizing: border-box;
-  background-color: transparent;
+}
+
+:host /deep/ .content-input:focus  + .el-view {
+  border-left: 1px solid #000;
 }
 
 :host /deep/ .el-input-currency-label {

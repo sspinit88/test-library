@@ -1,6 +1,5 @@
-import { Component, Input, AfterContentInit, ContentChild, HostBinding, ViewChild } from '@angular/core';
+import { Component, Input, AfterContentInit, ContentChild, HostBinding,  } from '@angular/core';
 import { ElInputCourencyDDirective } from '../el-input-courency-d.directive';
-import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../../constants/regexp.constants';
 
 @Component({
   selector: 'el-input-currency-wrap',
@@ -8,8 +7,6 @@ import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../../constants/regexp.constants'
   styleUrls: ['./el-input-currency-wrap.component.css']
 })
 export class ElInputCurrencyWrapComponent implements AfterContentInit {
-
-  @ViewChild('content', { static: false }) content;
 
   @Input() label: string = null;
 
@@ -28,16 +25,6 @@ export class ElInputCurrencyWrapComponent implements AfterContentInit {
     if (!this.input) {
       console.error('Отсутствует контент в el-input-currency-wrap');
     }
-
-  }
-
-  formatValue(el: HTMLInputElement): void {
-    const inputValue = el.value.replace(RE_FORMAT_NUMBER, '').substring(0, 9);
-
-    el.value = inputValue.replace(RE_CURRENCY, '$1 ');
-
-    this.input.formatInputValue(el.value);
-
 
   }
 }
