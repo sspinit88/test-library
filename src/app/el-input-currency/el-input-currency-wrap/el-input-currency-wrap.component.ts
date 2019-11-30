@@ -9,7 +9,7 @@ import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../../constants/regexp.constants'
 })
 export class ElInputCurrencyWrapComponent implements AfterContentInit {
 
-  @ViewChild('content', { static: false })
+  @ViewChild('content', { static: false }) content;
 
   @Input() label: string = null;
 
@@ -28,6 +28,7 @@ export class ElInputCurrencyWrapComponent implements AfterContentInit {
     if (!this.input) {
       console.error('Отсутствует контент в el-input-currency-wrap');
     }
+
   }
 
   formatValue(el: HTMLInputElement): void {
@@ -36,5 +37,7 @@ export class ElInputCurrencyWrapComponent implements AfterContentInit {
     el.value = inputValue.replace(RE_CURRENCY, '$1 ');
 
     this.input.formatInputValue(el.value);
+
+
   }
 }

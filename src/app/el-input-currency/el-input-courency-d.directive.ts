@@ -9,6 +9,7 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
   input: HTMLInputElement;
   focused: boolean = false;
 
+
   constructor(
     private _elRef: ElementRef,
     private _renderer: Renderer2,
@@ -22,6 +23,11 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
 
   ngAfterViewInit(): void {
     this.formatInputValue();
+    const t = this.input.closest('div.el-content').querySelector('.el-view');
+
+    const test = new Event('click');
+
+    t.dispatchEvent(test);
   }
 
   @HostListener('focus')
@@ -40,7 +46,7 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
     }
     const value = str.replace(/\s+/g, '');
 
-    // console.log('Line - 44, value:', value);
+
 
     this.input.value = value;
     // console.log('File: el-input-courency-d.directive.ts, Line - 46, this.input:', this.input)

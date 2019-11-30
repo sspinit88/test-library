@@ -25,5 +25,6 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     // console.log(this.form.value);
+    // console.log(this.form);
   }
 }
