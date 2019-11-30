@@ -1,5 +1,6 @@
-import { Component, Input, AfterContentInit, ContentChild, HostBinding } from '@angular/core';
+import { Component, Input, AfterContentInit, ContentChild, HostBinding, ViewChild } from '@angular/core';
 import { ElInputCourencyDDirective } from '../el-input-courency-d.directive';
+import { RE_CURRENCY, RE_FORMAT_NUMBER } from '../../constants/regexp.constants';
 
 @Component({
   selector: 'el-input-currency-wrap',
@@ -8,11 +9,14 @@ import { ElInputCourencyDDirective } from '../el-input-courency-d.directive';
 })
 export class ElInputCurrencyWrapComponent implements AfterContentInit {
 
+  @ViewChild('content', { static: false })
+
   @Input() label: string = null;
 
   @ContentChild(ElInputCourencyDDirective, { static: false }) input: ElInputCourencyDDirective;
 
-  constructor() { }
+  constructor() {
+  }
 
   @HostBinding('class.el-focused')
   get inputFocused(): boolean {
@@ -26,4 +30,11 @@ export class ElInputCurrencyWrapComponent implements AfterContentInit {
     }
   }
 
+  formatValue(el: HTMLInputElement): void {
+    const inputValue = el.value.replace(RE_FORMAT_NUMBER, '').substring(0, 9);
+
+    el.value = inputValue.replace(RE_CURRENCY, '$1 ');
+
+    this.input.formatInputValue(el.value);
+  }
 }

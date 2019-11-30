@@ -2,4 +2,11 @@
        class="el-input-currency-label">
   {{label}}
 </label>
-<ng-content></ng-content>
+<div class="el-content">
+  <ng-content #content></ng-content>
+  <input (input)="formatValue(elViewer)"
+         #elViewer
+         maxlength="11"
+         type="text"
+         class="el-view">
+</div>

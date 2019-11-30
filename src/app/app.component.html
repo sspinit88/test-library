@@ -1,8 +1,17 @@
-<el-input-currency>
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+  <el-input-currency>
     <el-input-currency-wrap [label]="'от'">
-        <input type="number" />
+      <input formControlName="lotStartPrice"
+             d-format
+             maxlength="11"/>
     </el-input-currency-wrap>
     <el-input-currency-wrap [label]="'до'">
-        <input type="number" />
+      <input formControlName="lotFinishPrice"
+             d-format
+             maxlength="11"/>
     </el-input-currency-wrap>
-</el-input-currency>
+  </el-input-currency>
+   <br>
+  <button>submit!</button>
+</form>

@@ -7,15 +7,44 @@
   align-items: center;
   padding: 17px 10px 17px;
   border: 1px solid #d6d6d6;
+  position: relative;
 }
 
-:host /deep/ input {
-  border: none;
+:host .el-content {
+  color: #000;
+  position: relative;
+  z-index: 0;
+}
+
+:host /deep/ .content-input {
+  border: 1px solid blue;
   outline: none;
   height: 100%;
+  width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background-color: transparent;
+  color: #000;
+  position: relative;
+  z-index: 100;
+  caret-color: #000;
+  /*opacity: 0;*/
+}
+
+:host .el-view {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 100%;
   width: 100%;
+  /*border: none;*/
+  border: 1px solid red;
+  outline: none;
+  line-height: 23px;
+  z-index: 1000;
+  opacity: 1;
+  caret-color: #000;
+  box-sizing: border-box;
   background-color: transparent;
 }
 
@@ -29,5 +58,6 @@
 }
 
 :host.el-focused {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+  0 0 8px rgba(102, 175, 233, 0.6);
 }

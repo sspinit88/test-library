@@ -10,6 +10,7 @@ import { InputRefDirective } from './lib/au-fa-input/input-ref.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { AuTabComponent } from './lib/au-tab-panel/au-tab/au-tab.component';
 import { AuTabPanelComponent } from './lib/au-tab-panel/au-tab-panel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AuTabPanelComponent } from './lib/au-tab-panel/au-tab-panel.component';
     AppRoutingModule,
     HttpClientModule,
     ElInputCurrencyModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
