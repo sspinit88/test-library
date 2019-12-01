@@ -23,11 +23,6 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
 
   ngAfterViewInit(): void {
     this.formatInputValue();
-    const t = this.input.closest('div.el-content').querySelector('.el-view');
-
-    const test = new Event('click');
-
-    t.dispatchEvent(test);
   }
 
   @HostListener('focus')
@@ -44,12 +39,8 @@ export class ElInputCourencyDDirective implements AfterContentInit, AfterViewIni
     if (!str) {
       return;
     }
-    const value = str.replace(/\s+/g, '');
 
-
-
-    this.input.value = value;
-    // console.log('File: el-input-courency-d.directive.ts, Line - 46, this.input:', this.input)
+    this.input.value = str.replace(/\s+/g, '');
   }
 
   addInputClass(): void {

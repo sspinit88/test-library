@@ -37,7 +37,5 @@ export class ElInputCurrencyWrapComponent implements AfterContentInit {
     el.value = inputValue.replace(RE_CURRENCY, '$1 ');
 
     this.input.formatInputValue(el.value);
-
-
   }
 }
