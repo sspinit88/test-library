@@ -3,10 +3,7 @@
   {{label}}
 </label>
 <div class="el-content">
-  <ng-content #content></ng-content>
-  <input (input)="formatValue(elViewer)"
-         #elViewer
-         maxlength="11"
-         type="text"
+  <ng-content></ng-content>
+  <input type="text"
          class="el-view">
 </div>
